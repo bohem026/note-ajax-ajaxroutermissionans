@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 export default function Home({ posts }) {
   const latest = [...posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 3);
   console.log(latest);
+  
   return (
     <section>
       <h2>소개</h2>
@@ -15,7 +16,7 @@ export default function Home({ posts }) {
       ) : (
         <ul>
           {latest.map((p) => (
-            <li>
+            <li key={p.id}>
               <Link to={`/post/${p.id}`}>{p.title}</Link>
             </li>
           ))}
