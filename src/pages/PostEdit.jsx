@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router';
-import styles from './PostNew.module.css';
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router";
+import styles from "./PostNew.module.css";
 
 export default function PostEdit({ posts, onUpdate }) {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   const { id } = useParams();
   let navigate = useNavigate();
 
-  const post = posts.find((p) => p.id === Number(id));
+  const post = posts.find(p => p.id === Number(id));
 
   useEffect(() => {
     if (!post) return;
@@ -28,36 +28,30 @@ export default function PostEdit({ posts, onUpdate }) {
     );
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const trimmedTitle = title.trim();
     const trimmedContent = content.trim();
-
     if (!trimmedTitle || !trimmedContent) {
-      alert('제목과 내용을 모두 입력해주세요.');
+      alert("제목과 내용을 모두를 입력해주세요");
       return;
     }
-
-    console.log(title);
-    console.log(content);
-
     onUpdate(Number(id), {
       title: title,
       content: content,
     });
 
-    navigate(`/post/${id}`); // 현재 글 상세로 이동
+    navigate(`/post/${id}`); //현재글 상세로 이동
   };
-
   return (
     <>
-      <h2>글 작성</h2>
+      <h2>글 수정</h2>
       <form action="" className={styles.form} onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="제목"
           value={title}
-          onChange={(e) => {
+          onChange={e => {
             setTitle(e.target.value);
           }}
         />
@@ -66,7 +60,7 @@ export default function PostEdit({ posts, onUpdate }) {
           id=""
           placeholder="내용"
           value={content}
-          onChange={(e) => {
+          onChange={e => {
             setContent(e.target.value);
           }}
         ></textarea>
