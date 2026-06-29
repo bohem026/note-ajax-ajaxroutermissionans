@@ -70,7 +70,7 @@ function App() {
       prev.map((p) =>
         p.id === _id
           ? {
-              ...post,
+              ...posts,
               title: title,
               content: content,
             }
