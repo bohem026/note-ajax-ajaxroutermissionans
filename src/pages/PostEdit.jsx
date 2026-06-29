@@ -38,12 +38,15 @@ export default function PostEdit({ posts, onUpdate }) {
       return;
     }
 
-    const newId = onUpdate({
+    console.log(title);
+    console.log(content);
+
+    onUpdate(Number(id), {
       title: title,
       content: content,
     });
 
-    navigate(`/post/${newId}`); // 현재 글 상세로 이동
+    navigate(`/post/${id}`); // 현재 글 상세로 이동
   };
 
   return (
